@@ -1,0 +1,105 @@
+{% extends 'base_dashboard.html' %}
+
+
+
+
+{% block content %}
+
+<main>
+  <h1>Dashboard</h1>
+  <div class="data">
+    <input type="date" />
+  </div>
+
+
+  <!-- END OF INSIGHTS -->
+
+  <div class="middle">
+    <div class="recent-orders">
+      <h2>Recent Orders</h2>
+    
+      <div>
+      <form method="get">
+        <input type="search" id="tags" placeholder="Patient name" name="q">
+        <button type="submit">Search</button>
+      </form>
+    </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Patient</th>
+            <th>Doctor</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for t in time %}
+          <tr>
+            <td>{{ t.time|date:"H:i" }}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          {% for app in appointment %}
+          {% if app.time|date:"H" == t.time|date:"H" %}
+          <tr>
+            <th></th>
+            <td>{{ app.date |date:"D, d M, Y" }}</td>
+            <td>{{ app.time |date:"H:i" }}</td>
+            <td>{{ app.patient }}</td>
+            <td>{{ app.doctor }}</td>
+            {% if app.status == "Pending" %}
+            <td class="warning">{{ app.status }}</td>
+            {% elif app.status == "Completed" %}
+            <td class="success">{{ app.status }}</td>
+            {% elif app.status == "Cancelled" %}
+            <td class="danger">{{ app.status }}</td>
+            {% endif %}
+
+            {% endif %}
+            {%endfor%}
+            {% endfor %}
+          </tr>
+
+        </tbody>
+      </table>
+
+      <a href="#">Show All</a>
+    </div>
+  </div>
+</main>
+
+<div class="right">
+  <div class="top">
+    <button class="" id="menu-btn">
+      <span class="material-icons-sharp">menu</span>
+    </button>
+
+    <div class="theme-toggler">
+      <span class="material-icons-sharp active">light_mode</span>
+      <span class="material-icons-sharp">dark_mode</span>
+    </div>
+
+    <div class="profile">
+      <div class="info">
+        <p>Hey, <b>{{user.first_name}} {{user.last_name}}</b></p>
+        <small class="text-muted">Admin</small>
+      </div>
+
+      <div class="profile-photo">
+        <img src="{{ user.profile_picture.url }}" alt="profile" />
+      </div>
+    </div>
+  </div>
+  {% endblock content %}
+
+
+  </body>
+
+  </html>

@@ -1,0 +1,65 @@
+{% load static %}
+{% url 'dashboard' as dashboard_url %}
+{% url 'patients' as patients_url %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+     <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
+    <title>{% block title %}Rohat Dent {% endblock title %}</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+    <div class="d-flex flex-column flex-shrink-0 p-3 bg-light col-md-3" style="width: 280px;">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+          <i class="fa-solid fa-tooth me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></i>
+          <span class="fs-4">Rohat Dent</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a href="{{ dashboard_url }}" class="nav-link {% if request.path == dashboard_url %}active{% else %}link-dark{% endif %}" aria-current="page">
+                <i class="fa-solid fa-table-columns me-2"><use xlink:href="#home"></use></i>
+              Dashboard
+            </a>
+          </li>
+          <li>
+            <a href="{{ patients_url }}" class="nav-link {% if request.path == patients_url %}active{% else %}link-dark{% endif %}">
+                <i class="fa-solid fa-hospital-user me-2"><use xlink:href=""></use></i>
+              Patients
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link link-dark">
+                <i class="fa-solid fa-money-bill me-2"><use xlink:href="#home"></use></i>
+              Bill
+            </a>
+          </li>
+        </ul>
+        <hr>
+        <div class="dropdown">
+          <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{{ user.profile_picture.url }}" alt="" width="32" height="32" class="rounded-circle me-2">
+            <strong>{{user.first_name}} {{user.last_name}}</strong>
+          </a>
+          <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+            <li><a class="dropdown-item" href="{% url 'appointment_new' %}">New appointment...</a></li>
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{% url 'logout' %}">Sign out</a></li>
+          </ul>
+        </div>
+      
+    </div>
+        {% block content %}
+        {% endblock content %}
+  </div>
+</div>     
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>

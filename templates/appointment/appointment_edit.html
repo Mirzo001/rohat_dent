@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <h1>Tahrirlash</h1>
+    <form method="post" action="{% url 'appointment_edit' appointment.pk %}">{% csrf_token %}
+        {{ appointment_form.errors }}
+        {{ appointment_form|crispy }}
+    <button class="btn btn-info ml-2" type="submit">Saqlash</button>
+    </form>
+{% endblock content %}

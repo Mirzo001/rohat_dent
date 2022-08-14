@@ -11,7 +11,29 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+# import environ
+# import os
 
+# env = environ.Env(
+#     # set casting, default value
+#     DEBUG=(bool, False)
+# )
+
+# environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
+
+# SECRET_KEY = env('SECRET_KEY')
+# DEBUG = env('DEBUG')
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': env('DB_NAME'),
+#         'HOST': env('DB_HOST'),  
+#         'PORT': 5432,
+#         'USER': env('DB_USER'),
+#         'PASSWORD': env('DB_PASSWORD')
+#     }
+# }
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,7 +47,7 @@ SECRET_KEY = 'django-insecure-32cvchql&qedoi%3ub%j9#dgzro#@7f-rw7tlmy8&4_0&dmgc3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"

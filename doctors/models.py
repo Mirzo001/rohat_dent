@@ -26,7 +26,7 @@ class BaseInfo(models.Model):
         
 class Doctor(BaseInfo):
     position = models.CharField(max_length=100, choices=STAFF_CHOICES)
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
